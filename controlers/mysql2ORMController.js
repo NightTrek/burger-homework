@@ -3,16 +3,16 @@ const mysql = require('mysql2/promise');
 
 module.exports = {
     db:"burger_db",
-    GetConnection: async function (db=this.db, pass="password") {
+    GetConnection: async function (db=this.db, pass="r7u2z2vgj004b41j") {
         try {
             return await mysql.createConnection({
-                host: "localhost",
+                host: process.env.JAWSDB_URL,
 
                 // Your port; if not 3306
                 port: 3306,
 
                 // Your username
-                user: "root",
+                user: "zu1b29gao345z8ak",
 
                 // Your password
                 password: pass,
