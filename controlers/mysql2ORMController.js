@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 
 
 module.exports = {
-    db:"burger_db",
+    db:"ucx6hifqrpq54fjk",
     GetConnection: async function (db=this.db, pass="r7u2z2vgj004b41j") {
         try {
             return await mysql.createConnection({
@@ -79,7 +79,7 @@ module.exports = {
 
     insertOne: async function (con, InsertObject) {
         let queryString =
-            `INSERT INTO burger SET ?;`;
+            `INSERT INTO ucx6hifqrpq54fjk SET ?;`;
         try {
             console.log(InsertObject)
             let response = await con.query(
