@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <input type="text" name="burger name" id="burgername">
+        <br>
+        <input type="submit" value="submit">
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            {{#each burgersToEat}}
+            <div class="row">
+                <h3>Wish: {{this.burger}}</h3>
+                <button id="eatBurger">Eat</button>
+            </div>
+            {{/each}}
+        </div>
+        <div class="col-sm-6"></div>
+    </div>
+</div>
