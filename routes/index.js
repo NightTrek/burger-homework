@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const apiRoutes =require('./api');
-// const sql = require('mysql2/promise');
-const sql = require("../controlers/mysql2ORMController")
+const sql = require("../controlers/mysql2ORMController");
 
 
 router.use('/api', apiRoutes);
@@ -11,10 +10,20 @@ router.use('/api', apiRoutes);
 router.get("/", async function(req, res) {
   try{
     let connection = await sql.GetConnection();
-    let sqlData = await sql.selectAllFromTable(connection, "burger")
-
-    console.log(sqlData);
-    res.render("DisplayAll", sqlData);
+    let response = await connection.query(`SELECT * FROM burger`);
+    let bugers = [];
+    let eatenBurger = [];
+    response[0].forEach(element => {
+      if(element.isEaton === 1){
+        eatenBurger.push(element);
+      }else{
+        bugers.push(element);
+      }
+    });
+    let input = {burger:bugers, nonBurger:eatenBurger};
+    
+    console.log(response[0]);
+    res.render("DisplayAll", input);
   }catch(err){
     throw err;
   }

@@ -77,6 +77,30 @@ module.exports = {
         }
     },
 
+    insertOne: async function (con, InsertObject) {
+        let queryString =
+            `INSERT INTO burger SET ?;`;
+        try {
+            console.log(InsertObject)
+            let response = await con.query(
+                queryString, {
+                    burger: InsertObject.ValueA,
+                    isEaton: InsertObject.ValueB,
+                });
+            return new Promise((resolve, reject) => {
+                if (response) {
+                    resolve(response[0]);
+                } else {
+                    reject({ err: "SQL server Response Error code:500 in method insert burger()" });
+                }
+            });
+
+        } catch (err) {
+            console.log("error inserting data to table");
+            throw err;
+        }
+    },
+
     findWhoHasMost: async function (con, tableOneCol, tableTwoForeignKey, tableOne, tableTwo) {
         let queryString =
             "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";

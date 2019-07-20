@@ -1,18 +1,67 @@
 <div class="container">
     <div class="row">
-        <input type="text" name="burger name" id="burgername">
+        <input type="text" name="burger name" id="burgerName">
         <br>
-        <input type="submit" value="submit">
+        <input type="submit" value="submit" id="subBurger">
     </div>
     <div class="row">
         <div class="col-sm-6">
-            {{#each burgersToEat}}
+            <h2> Burgers TO be Eaton</h2>
+        </div>
+        <div class="col-sm-6">
+            <h2>Burgers that have been eaton</h2>
+        </div>
+    </div>
+    <div class="row black">
+        <div class="col-sm-6" id="realBurger">
+            {{#each burger}}
             <div class="row">
-                <h3>Wish: {{this.burger}}</h3>
-                <button id="eatBurger">Eat</button>
+                <h3>{{this.burger}}</h3>
+                <button id="eatBurger" data='{{this.burger}}'>Eat</button>
             </div>
             {{/each}}
         </div>
-        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+            {{#each nonBurger}}
+                <div class="row">
+                     <h3>{{this.burger}}</h3>
+                </div>
+            {{/each}}
+        </div>
     </div>
 </div>
+
+<script>
+
+    $(document).ready( function(){
+        $(document).on('click', "#subBurger", async function(event){
+        event.preventDefault();
+        console.log("click1");
+        let value = $('#burgerName').val();
+        console.log(value);
+        $('#realBurger').append($('<div>').addClass("row").append($('<h3>').text(value)).append($('<button>').attr('id', "eatBurger").attr('data',value).text("Eat")));
+        let response = await $.ajax({
+          method: "POST",
+          url: "http://localhost:3000/api/newBurger",
+          data: {burger:value}
+        });
+    });
+
+    $(document).on('click', "#eatBurger", async function(){
+        console.log('click2');
+        let value = $(this).attr('data');
+        console.log(value);
+        let response = await $.ajax({
+          method: "POST",
+          url: "http://localhost:3000/api/eatBurger",
+          data: {burger:value}
+        });
+       location.reload(true)
+    });
+
+
+    });
+    
+
+
+</script>
