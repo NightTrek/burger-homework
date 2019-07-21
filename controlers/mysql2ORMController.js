@@ -79,7 +79,7 @@ module.exports = {
 
     insertOne: async function (con, InsertObject) {
         let queryString =
-            `INSERT INTO ucx6hifqrpq54fjk SET ?;`;
+            `INSERT INTO burger SET ?;`;
         try {
             console.log(InsertObject)
             let response = await con.query(
