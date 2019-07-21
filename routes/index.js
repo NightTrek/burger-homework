@@ -23,6 +23,7 @@ router.get("/", async function(req, res) {
     let input = {burger:bugers, nonBurger:eatenBurger};
     
     console.log(response[0]);
+    connection.end();
     res.render("DisplayAll", input);
   }catch(err){
     res.send("error connecting to burger db")

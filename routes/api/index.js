@@ -11,6 +11,7 @@ router.post('/newBurger', async function (req,res){
     let con = await sql.GetConnection();
     let resp = await sql.insertOne(con, {ValueA: req.body.burger,ValueB: false});
     console.log(resp);
+    con.end();
     res.send("success");
     }catch(err){
         res.send("fail");
@@ -23,6 +24,7 @@ router.post('/eatBurger', async function (req, res){
     let con = await sql.GetConnection();
     con.query(`UPDATE ucx6hifqrpq54fjk 
     SET isEaton = 1 WHERE burger = '${req.body.burger}';`);
+    con.end();
     res.send("success");
     }catch(err){
         res.send("fail");
