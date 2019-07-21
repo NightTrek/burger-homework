@@ -25,7 +25,8 @@ router.get("/", async function(req, res) {
     console.log(response[0]);
     res.render("DisplayAll", input);
   }catch(err){
-    throw err;
+    res.send("error connecting to burger db")
+    console.log(err)
   }
   });
 

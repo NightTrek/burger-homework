@@ -6,7 +6,7 @@ module.exports = {
     GetConnection: async function (db=this.db, pass="r7u2z2vgj004b41j") {
         try {
             return await mysql.createConnection({
-                host: process.env.JAWSDB_URL,
+                host: "s3lkt7lynu0uthj8.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 
                 // Your port; if not 3306
                 port: 3306,
@@ -16,7 +16,7 @@ module.exports = {
 
                 // Your password
                 password: pass,
-                database: db
+                database: this.db
             });
         }
         catch (err) {
