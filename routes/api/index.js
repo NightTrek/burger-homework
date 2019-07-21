@@ -22,7 +22,7 @@ router.post('/newBurger', async function (req,res){
 router.post('/eatBurger', async function (req, res){
     try{
     let con = await sql.GetConnection();
-    con.query(`UPDATE ucx6hifqrpq54fjk 
+    con.query(`UPDATE burger 
     SET isEaton = 1 WHERE burger = '${req.body.burger}';`);
     con.end();
     res.send("success");
