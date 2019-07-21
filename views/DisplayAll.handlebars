@@ -42,7 +42,7 @@
         $('#realBurger').append($('<div>').addClass("row").append($('<h3>').text(value)).append($('<button>').attr('id', "eatBurger").attr('data',value).text("Eat")));
         let response = await $.ajax({
           method: "POST",
-          url: "http://localhost:3000/api/newBurger",
+          url: "https://lit-peak-65909.herokuapp.com/api/newBurger",
           data: {burger:value}
         });
     });
@@ -53,7 +53,7 @@
         console.log(value);
         let response = await $.ajax({
           method: "POST",
-          url: "http://localhost:3000/api/eatBurger",
+          url: "https://lit-peak-65909.herokuapp.com/api/eatBurger",
           data: {burger:value}
         });
        location.reload(true)
